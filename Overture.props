@@ -1,0 +1,46 @@
+<Project>
+  <PropertyGroup>
+    <Authors>Maurice CGP Peters</Authors>
+    <Org>Overture</Org>
+    <AssemblyName>$(MSBuildProjectName)</AssemblyName>
+    <RootNamespace>$(AssemblyName)</RootNamespace>
+    <DebugType>full</DebugType>
+    <Nullable>enable</Nullable>
+    <EnablePreviewFeatures>true</EnablePreviewFeatures>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
+    <Deterministic>true</Deterministic>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <LangVersion>latest</LangVersion>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <ProjectUrl>https://github.com/MCGPPeters/overture</ProjectUrl>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <BUILD_NUMBER Condition="'$(BUILD_NUMBER)' == ''">0</BUILD_NUMBER>
+    <MinVerBuildMetadata>build.$(BUILD_NUMBER)</MinVerBuildMetadata>
+    <NoWarn>CS1591, CS8981, S101</NoWarn>
+    <IsTestProject>false</IsTestProject>
+    <RepositoryUrl>https://github.com/MCGPPeters/overture.git</RepositoryUrl>
+    <ImplicitUsings>true</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MinVer" Version="4.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net6.0'">
+    <FrameworkVersion>6.0.0</FrameworkVersion>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Compile Include="$(SolutionDir)/Using.cs" Link="Using.cs" Visible="false" />
+  </ItemGroup>
+</Project>

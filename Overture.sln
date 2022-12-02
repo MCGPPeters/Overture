@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2C95C50E-8728-45FF-B8CE-6DCDCB9114B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Build", "src\Build\Build.csproj", "{2DD37DF3-142B-4B44-AD78-D9E147B4111C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Overture", "src\Overture\Overture.csproj", "{3CFC77D8-9F94-4362-AD3C-1F25E8B30D3D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{436B66A7-7104-49CA-A0A3-FA15D513DDA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{436B66A7-7104-49CA-A0A3-FA15D513DDA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{436B66A7-7104-49CA-A0A3-FA15D513DDA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{436B66A7-7104-49CA-A0A3-FA15D513DDA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DD37DF3-142B-4B44-AD78-D9E147B4111C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DD37DF3-142B-4B44-AD78-D9E147B4111C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DD37DF3-142B-4B44-AD78-D9E147B4111C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DD37DF3-142B-4B44-AD78-D9E147B4111C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CFC77D8-9F94-4362-AD3C-1F25E8B30D3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CFC77D8-9F94-4362-AD3C-1F25E8B30D3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CFC77D8-9F94-4362-AD3C-1F25E8B30D3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CFC77D8-9F94-4362-AD3C-1F25E8B30D3D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2DD37DF3-142B-4B44-AD78-D9E147B4111C} = {2C95C50E-8728-45FF-B8CE-6DCDCB9114B8}
+		{3CFC77D8-9F94-4362-AD3C-1F25E8B30D3D} = {2C95C50E-8728-45FF-B8CE-6DCDCB9114B8}
+	EndGlobalSection
+EndGlobal
