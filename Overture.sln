@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Build", "src\Build\Build.cs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Overture", "src\Overture\Overture.csproj", "{3CFC77D8-9F94-4362-AD3C-1F25E8B30D3D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Overture.Tests", "src\Overture.Tests\Overture.Tests.csproj", "{504D0306-3B95-4287-8B40-35978455C029}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,9 +32,14 @@ Global
 		{3CFC77D8-9F94-4362-AD3C-1F25E8B30D3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CFC77D8-9F94-4362-AD3C-1F25E8B30D3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CFC77D8-9F94-4362-AD3C-1F25E8B30D3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{504D0306-3B95-4287-8B40-35978455C029}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{504D0306-3B95-4287-8B40-35978455C029}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{504D0306-3B95-4287-8B40-35978455C029}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{504D0306-3B95-4287-8B40-35978455C029}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2DD37DF3-142B-4B44-AD78-D9E147B4111C} = {2C95C50E-8728-45FF-B8CE-6DCDCB9114B8}
 		{3CFC77D8-9F94-4362-AD3C-1F25E8B30D3D} = {2C95C50E-8728-45FF-B8CE-6DCDCB9114B8}
+		{504D0306-3B95-4287-8B40-35978455C029} = {2C95C50E-8728-45FF-B8CE-6DCDCB9114B8}
 	EndGlobalSection
 EndGlobal
