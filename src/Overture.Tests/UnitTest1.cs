@@ -18,5 +18,6 @@ public record Moo
         public required SslClientHelloInfo Foo {get;init;}
     }
 
-[Validated<string, AllLettersAreLowerCase>]
+//[Validated<string, AllLettersAreLowerCase>]
+[Alias<string[]>]
 public partial record struct Foo { }

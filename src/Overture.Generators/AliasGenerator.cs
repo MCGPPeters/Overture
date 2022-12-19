@@ -95,16 +95,16 @@ namespace {namespaceName}
 {{
     {kindSource}
     {{
-        public {valueType} {propertyName} {{ get; }}
+        public {valueType}? {propertyName} {{ get; }}
         private {typeSymbol.Name}({valueType} value)
         {{
             {propertyName} = value;
         }}
 
-        public override string ToString() => {propertyName}.ToString();
+        public override string? ToString() => {propertyName}?.ToString();
         {equalsSource}
         public static explicit operator {typeSymbol.Name}({valueType} value) => new {typeSymbol.Name}(value);
-        public static implicit operator {valueType}({typeSymbol.Name} value) => value.{propertyName};
+        public static implicit operator {valueType}?({typeSymbol.Name} value) => value.{propertyName};
     }}
 }}");
         return source.ToString();
