@@ -25,10 +25,6 @@
     <ImplicitUsings>true</ImplicitUsings>
 	  <EnablePreviewFeatures>true</EnablePreviewFeatures>
   </PropertyGroup>
-	
-	  <ItemGroup>
-    <Compile Include="$(SolutionDir)Using.cs" Link="Using.cs" Visible="false"/>
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MinVer" Version="4.1.0">
@@ -44,8 +40,5 @@
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net6.0'">
     <FrameworkVersion>6.0.0</FrameworkVersion>
   </PropertyGroup>
-  
-  <ItemGroup>
-    <Compile Include="$(SolutionDir)/Using.cs" Link="Using.cs" Visible="false" />
-  </ItemGroup>
+
 </Project>
