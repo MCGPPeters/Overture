@@ -20,7 +20,7 @@ public class AliasGenerator : ISourceGenerator
         {
             var model = context.Compilation.GetSemanticModel(candidate.SyntaxTree);
             var typeSymbol = ModelExtensions.GetDeclaredSymbol(model, candidate);
-            var attributeSymbol = context.Compilation.GetTypeByMetadataName("Radix.AliasAttribute`1");
+            var attributeSymbol = context.Compilation.GetTypeByMetadataName("Overture.AliasAttribute`1");
             var attributes = typeSymbol!.GetAttributes().Where(attribute => attribute.AttributeClass!.Name.Equals(attributeSymbol!.Name));
             foreach (var attribute in attributes)
             {

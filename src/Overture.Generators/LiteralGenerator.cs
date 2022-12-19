@@ -21,7 +21,7 @@ public class LiteralGenerator : ISourceGenerator
         {
             var model = context.Compilation.GetSemanticModel(candidate.SyntaxTree);
             var typeSymbol = ModelExtensions.GetDeclaredSymbol(model, candidate);
-            var attributeSymbol = context.Compilation.GetTypeByMetadataName("Radix.LiteralAttribute");
+            var attributeSymbol = context.Compilation.GetTypeByMetadataName("Overture.LiteralAttribute");
             var attributes = typeSymbol!.GetAttributes().Where(attribute => attribute.AttributeClass!.Name.Equals(attributeSymbol!.Name));
             foreach (var normalizedSourceCodeText in from attribute in attributes
                                                      let stringRepresentation = attribute.NamedArguments.Any() ? attribute.NamedArguments[0].Value.Value!.ToString() : ""
@@ -61,10 +61,10 @@ public class LiteralGenerator : ISourceGenerator
 
         var kindSource = typeDeclarationSyntax.Kind() switch
         {
-            SyntaxKind.ClassDeclaration => $"public sealed partial class {typeSymbolName} : Radix.Literal<{typeSymbolName}>, System.IEquatable<{typeSymbolName}>",
-            SyntaxKind.RecordDeclaration => $"public sealed partial record {typeSymbolName} : Radix.Literal<{typeSymbolName}>",
-            SyntaxKind.StructDeclaration => $"public partial struct {typeSymbolName}  : Radix.Literal<{typeSymbolName}>, System.IEquatable<{typeSymbolName}>",
-            SyntaxKind.RecordStructDeclaration => $"public partial record struct {typeSymbolName} : Radix.Literal<{typeSymbolName}>",
+            SyntaxKind.ClassDeclaration => $"public sealed partial class {typeSymbolName} : Overture.Literal<{typeSymbolName}>, System.IEquatable<{typeSymbolName}>",
+            SyntaxKind.RecordDeclaration => $"public sealed partial record {typeSymbolName} : Overture.Literal<{typeSymbolName}>",
+            SyntaxKind.StructDeclaration => $"public partial struct {typeSymbolName}  : Overture.Literal<{typeSymbolName}>, System.IEquatable<{typeSymbolName}>",
+            SyntaxKind.RecordStructDeclaration => $"public partial record struct {typeSymbolName} : Overture.Literal<{typeSymbolName}>",
             _ => throw new NotSupportedException("Unsupported type kind for generating Literal code")
         };
 
@@ -101,7 +101,7 @@ namespace {namespaceName}
         {equalsSource}
         public static implicit operator string({typeSymbolName} value) => ""{toString}"";
         public static implicit operator {typeSymbolName}(string value) => value  == ""{toString}"" ? new() : throw new ArgumentException(""'value' is not assignable to '{typeSymbol.Name}'"");
-        public static string Format() => ""{toString}"";
+        public string Format() => ""{toString}"";
     }}
 }}");
         return source.ToString();

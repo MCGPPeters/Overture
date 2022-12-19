@@ -2,9 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <LangVersion>Preview</LangVersion>
     <IsRoslynComponent>true</IsRoslynComponent>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="bin\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <None Remove="bin\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.4.0" PrivateAssets="all" />
@@ -12,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="bin\Release\netstandard2.0\\Radix.Generators.dll" />
+    <None Remove="bin\Debug\netstandard2.0\\Overture.Generators.dll" />
   </ItemGroup>
 
   <ItemGroup>

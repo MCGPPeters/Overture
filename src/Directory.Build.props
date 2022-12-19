@@ -23,11 +23,12 @@
     <IsTestProject>false</IsTestProject>
     <RepositoryUrl>https://github.com/MCGPPeters/overture.git</RepositoryUrl>
     <ImplicitUsings>true</ImplicitUsings>
-
-	  <ImplicitUsings>enable</ImplicitUsings>
-	  <Nullable>enable</Nullable>
 	  <EnablePreviewFeatures>true</EnablePreviewFeatures>
   </PropertyGroup>
+	
+	  <ItemGroup>
+    <Compile Include="$(SolutionDir)Using.cs" Link="Using.cs" Visible="false"/>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MinVer" Version="4.1.0">

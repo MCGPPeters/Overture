@@ -2,7 +2,7 @@
   "profiles": {
     "Profile 1": {
       "commandName": "DebugRoslynComponent",
-      "targetProject": "..\\Samples\\Inventory\\Radix.Inventory\\Radix.Inventory.csproj"
+      "targetProject": "..\\Samples\\Inventory\\Overture.Inventory\\Overture.Inventory.csproj"
     }
   }
 }

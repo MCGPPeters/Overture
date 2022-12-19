@@ -20,7 +20,7 @@ public class ParsedGenerator : ISourceGenerator
         {
             var model = context.Compilation.GetSemanticModel(candidate.SyntaxTree);
             var typeSymbol = ModelExtensions.GetDeclaredSymbol(model, candidate);
-            var attributeSymbol = context.Compilation.GetTypeByMetadataName("Radix.ParsedAttribute`2");
+            var attributeSymbol = context.Compilation.GetTypeByMetadataName("Overture.ParsedAttribute`2");
             var attributes = typeSymbol!.GetAttributes().Where(attribute => attribute.AttributeClass!.Name.Equals(attributeSymbol!.Name));
             foreach (var attribute in attributes)
             {
@@ -95,8 +95,8 @@ public class ParsedGenerator : ISourceGenerator
         var source = new StringBuilder($@"
 namespace {namespaceName}
 {{
-    using static Radix.Control.Validated.Extensions;
-    using Radix.Data;
+    using static Overture.Control.Validated.Extensions;
+    using Overture.Data;
 
     {kindSource}
     {{

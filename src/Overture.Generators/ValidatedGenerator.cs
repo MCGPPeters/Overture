@@ -20,7 +20,7 @@ public class ValidatedGenerator : ISourceGenerator
         {
             var model = context.Compilation.GetSemanticModel(candidate.SyntaxTree);
             var typeSymbol = ModelExtensions.GetDeclaredSymbol(model, candidate);
-            var attributeSymbol = context.Compilation.GetTypeByMetadataName("Radix.ValidatedAttribute`2");
+            var attributeSymbol = context.Compilation.GetTypeByMetadataName("Overture.ValidatedAttribute`2");
             // check if the candidate had Validated<T, V> attributes
             // get the metadata for all attributes that are Validated attributes
             var attributes = typeSymbol?.GetAttributes().Where(attribute => attribute.AttributeClass is not null && attribute.AttributeClass.Name.Equals(attributeSymbol?.Name));
@@ -118,7 +118,7 @@ public class ValidatedGenerator : ISourceGenerator
         // create a string representation of a list of validator functions
         string validatorFunctions =
             validityTypeNames
-            .Select(validityType => $"{validityType}.Validate(\"{typeSymbol.Name}\")")
+            .Select(validityType => $"new {validityType}().Validate(\"{typeSymbol.Name}\")")
             .Aggregate((current, next) => $"{current},{Environment.NewLine}{next}");
 
         // build an array initializer from the comma seperated list
@@ -127,8 +127,8 @@ public class ValidatedGenerator : ISourceGenerator
         var source = new StringBuilder($@"
 namespace {namespaceName}
 {{
-    using static Radix.Control.Validated.Extensions;
-    using Radix.Data;
+    using static Overture.Control.Validated.Extensions;
+    using Overture.Data;
 
     {kindSource}
     {{

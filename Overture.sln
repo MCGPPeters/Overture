@@ -13,12 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Overture.Tests", "src\Overt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Overture.Generators", "src\Overture.Generators\Overture.Generators.csproj", "{D8E8224D-3317-4606-88FC-749597596EEB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{652D2D5B-EA42-45F4-A30A-A015721EA521}"
-	ProjectSection(SolutionItems) = preProject
-		Overture.props = Overture.props
-		Using.cs = Using.cs
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
