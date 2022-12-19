@@ -23,6 +23,10 @@
     <IsTestProject>false</IsTestProject>
     <RepositoryUrl>https://github.com/MCGPPeters/overture.git</RepositoryUrl>
     <ImplicitUsings>true</ImplicitUsings>
+
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>enable</Nullable>
+	  <EnablePreviewFeatures>true</EnablePreviewFeatures>
   </PropertyGroup>
 
   <ItemGroup>
