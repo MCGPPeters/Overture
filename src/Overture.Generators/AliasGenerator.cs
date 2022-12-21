@@ -75,7 +75,7 @@ public class AliasGenerator : ISourceGenerator
             SyntaxKind.ClassDeclaration => $@"
                 {equalsOperatorsSource}
                 public override bool Equals(object? obj) => obj is {typeSymbol.Name} other && Equals(other);
-                public override int GetHashCode() => {propertyName}.GetHashCode();
+                public override int GetHashCode() => {propertyName}?.GetHashCode();
                 public bool Equals({typeSymbol.Name} other){{ return {propertyName} == other.{propertyName}; }}",
             SyntaxKind.RecordDeclaration => "",
             SyntaxKind.StructDeclaration => $@"
@@ -84,7 +84,7 @@ public class AliasGenerator : ISourceGenerator
                 public override int GetHashCode() => {propertyName}.GetHashCode();
                 public bool Equals({typeSymbol.Name} other)
                 {{
-                    return {propertyName}.Equals(other.{propertyName});
+                    return {propertyName} is null ? false : {propertyName}.Equals(other.{propertyName});
                 }}",
             SyntaxKind.RecordStructDeclaration => "",
             _ => throw new NotSupportedException("Unsupported type kind for generating Alias code")

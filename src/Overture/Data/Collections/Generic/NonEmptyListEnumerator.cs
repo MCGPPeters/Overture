@@ -46,7 +46,6 @@ namespace Overture.Data.Collections.Generic
                 _started = true;
                 return _list is NonEmptyList<T> && _list is not null;
             }
-            return false;
         }
     
 

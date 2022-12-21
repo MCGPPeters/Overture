@@ -21,3 +21,6 @@ public record Moo
 //[Validated<string, AllLettersAreLowerCase>]
 [Alias<string[]>]
 public partial record struct Foo { }
+
+[Alias<string[]>]
+public readonly partial struct ValidationErrors { };
