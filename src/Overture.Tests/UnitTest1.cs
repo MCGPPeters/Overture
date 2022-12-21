@@ -8,7 +8,7 @@ public class UnitTest1
     [Fact]
     public void Test1()
     {
-
+        var v = ValidationErrors.Create(null);
     }
 
     
@@ -22,5 +22,5 @@ public record Moo
 [Alias<string[]>]
 public partial record struct Foo { }
 
-[Alias<string[]>]
-public readonly partial struct ValidationErrors { };
+[Validated<string, IsNotNullEmptyOrWhiteSpace>]
+public readonly partial record struct ValidationErrors { };
