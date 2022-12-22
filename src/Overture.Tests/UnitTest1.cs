@@ -8,7 +8,7 @@ public class UnitTest1
     [Fact]
     public void Test1()
     {
-        var v = ValidationErrors.Create(null);
+        var v = ValidationErrors.Create(null!);
     }
 
     

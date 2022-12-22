@@ -136,7 +136,7 @@ namespace {namespaceName}
             ? $"#pragma warning disable CS8618 {Environment.NewLine} [System.Obsolete(\"Calling a constructor on a Validated type is not allowed.\", true)]public " + typeSymbol.Name + "(){}" + Environment.NewLine + "#pragma warning restore CS8618"
             : "")}
 
-        public static Validated<{typeSymbol.Name}> Create({valueTypeName}? value)
+        public static Validated<{typeSymbol.Name}> Create({valueTypeName} value)
         {{
             return value.Validate({validations}).Map(d => new {typeSymbol.Name}(d));
         }}
