@@ -19,7 +19,7 @@ public record Moo
     }
 
 //[Validated<string, AllLettersAreLowerCase>]
-[Alias<string[]>]
+[Alias<string>]
 public partial record struct Foo { }
 
 [Validated<string, IsNotNullEmptyOrWhiteSpace>]

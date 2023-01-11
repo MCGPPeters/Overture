@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Overture.Data.Collections.Generic;
 
 
-public interface List<T> : IEnumerable<T>, IReadOnlyCollection<T>, IReadOnlyList<T>
+public interface List<out T> : IReadOnlyList<T>
     where T : notnull
 {
     public static List<T> Create(IEnumerable<T> values) =>
