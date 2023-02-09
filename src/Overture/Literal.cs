@@ -2,7 +2,7 @@
 
 public interface Literal<out T>
 {
-    public abstract string Format();
+    public static abstract string Format();
 
 }
 

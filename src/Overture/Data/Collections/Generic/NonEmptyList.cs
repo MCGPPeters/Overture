@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using static Overture.Data.Collections.Generic.List.Extensions;
+﻿using Overture.Data.Collections.Generic.List;
+using System.Collections;
 
 namespace Overture.Data.Collections.Generic;
 
@@ -21,7 +21,7 @@ public sealed record NonEmptyList<T> : List<T>, IEnumerable
     public T this[int index] => this.ElementAt(index);
 
     public int Count =>
-        System.Linq.Enumerable.Count(this);
+        this.Count();
 
     public T Head { get; }
     public List<T> Tail { get; }

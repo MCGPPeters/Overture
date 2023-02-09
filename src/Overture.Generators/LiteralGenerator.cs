@@ -41,12 +41,6 @@ public class LiteralGenerator : ISourceGenerator
     public void Initialize(GeneratorInitializationContext context)
     {
         context.RegisterForSyntaxNotifications(() => new SyntaxReceiver());
-#if DEBUG
-        if (!Debugger.IsAttached)
-        {
-            Debugger.Launch();
-        }
-#endif
         Debug.WriteLine("Initialize code generator");
     }
 
@@ -101,7 +95,7 @@ namespace {namespaceName}
         {equalsSource}
         public static implicit operator string({typeSymbolName} value) => ""{toString}"";
         public static implicit operator {typeSymbolName}(string value) => value  == ""{toString}"" ? new() : throw new ArgumentException(""'value' is not assignable to '{typeSymbol.Name}'"");
-        public string Format() => ""{toString}"";
+        public static string Format() => ""{toString}"";
     }}
 }}");
         return source.ToString();

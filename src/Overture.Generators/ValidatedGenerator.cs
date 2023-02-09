@@ -23,7 +23,32 @@ public class ValidatedGenerator : ISourceGenerator
             var attributeSymbol = context.Compilation.GetTypeByMetadataName("Overture.ValidatedAttribute`2");
             // check if the candidate had Validated<T, V> attributes
             // get the metadata for all attributes that are Validated attributes
-            var attributes = typeSymbol?.GetAttributes().Where(attribute => attribute.AttributeClass is not null && attribute.AttributeClass.Name.Equals(attributeSymbol?.Name));
+            var attributes = typeSymbol?.GetAttributes().Where(attribute =>
+            {
+                if (attribute.AttributeClass is not null)
+                {
+                    if (attribute.AttributeClass.Name.Equals(attributeSymbol?.Name))
+                        return true;
+                }
+                return false;
+            });
+
+            var derivedAttributes = typeSymbol?.GetAttributes().Where(attribute =>
+            {
+                if (attribute.AttributeClass is not null)
+                {
+                    if (attribute.AttributeClass.BaseType is not null)
+                    {
+                        if (attribute.AttributeClass.BaseType.Name.Equals(attributeSymbol?.Name))
+                            return true;
+                        if ((attribute.AttributeClass.AllInterfaces.Any(ts => ts.Name.Equals(attributeSymbol?.Name))))
+                            return true;
+                    }
+                }
+                return false;
+            });
+
+
 
             if (attributes.Any())
             {
@@ -31,6 +56,14 @@ public class ValidatedGenerator : ISourceGenerator
                 var validityTypes =
                     attributes
                         .Select(attribute => $"{attribute.AttributeClass?.TypeArguments[1].ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}");
+
+                if (derivedAttributes.Any())
+                {
+                    // get the Validity<T> subtype which holds the validator function (which is the second type argument of the Validated<T, V> attributes)
+                    validityTypes = validityTypes.Concat(derivedAttributes
+                        .Select(Selector));
+                }
+
 
                 if (typeSymbol is not null && validityTypes.Any())
                 {
@@ -49,17 +82,15 @@ public class ValidatedGenerator : ISourceGenerator
         }
     }
 
+    private string Selector(AttributeData attribute)
+    {
+        return $"{attribute.AttributeClass?.BaseType?.TypeArguments[1].ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}";
+    }
 
 
     public void Initialize(GeneratorInitializationContext context)
     {
         context.RegisterForSyntaxNotifications(() => new SyntaxReceiver());
-
-        //if (!Debugger.IsAttached)
-        //{
-        //    Debugger.Launch();
-        //}
-        //Debug.WriteLine("Initalize code generator");
     }
 
     /// <summary>
@@ -67,7 +98,7 @@ public class ValidatedGenerator : ISourceGenerator
     /// </summary>
     /// <param name="valueTypeName">The typename of the value to validate (the aliased type)</param>
     /// <param name="validityTypeNames">The type names of the validity instances holding the validator functions</param>
-    /// <param name="typeSymbol">The symbol of the type to which the Validated attributes were added</param>
+    /// <param name="typeSymbol">The symbol of the type to which the Validated attributes were added
     /// <param name="typeDeclarationSyntax">The declaration syntax of the type to which the Validated attributes were added</param>
     /// <returns></returns>
     /// <exception cref="NotSupportedException"></exception>
@@ -118,7 +149,7 @@ public class ValidatedGenerator : ISourceGenerator
         // create a string representation of a list of validator functions
         string validatorFunctions =
             validityTypeNames
-            .Select(validityType => $"new {validityType}().Validate(\"{typeSymbol.Name}\")")
+            .Select(validityType => $"{validityType}.Validate(\"{typeSymbol.Name}\")")
             .Aggregate((current, next) => $"{current},{Environment.NewLine}{next}");
 
         // build an array initializer from the comma seperated list

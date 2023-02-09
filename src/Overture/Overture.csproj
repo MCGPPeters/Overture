@@ -10,4 +10,16 @@
     <PackageReference Include="System.Reactive.Linq" Version="5.0.0" />
   </ItemGroup>
 
+
+
+	<ItemGroup>
+		<ProjectReference Include="..\Overture.Generators\Overture.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+	</ItemGroup>
+
+
+
+	<ItemGroup>
+	  <Folder Include="Data\Number\" />
+	</ItemGroup>
+
 </Project>

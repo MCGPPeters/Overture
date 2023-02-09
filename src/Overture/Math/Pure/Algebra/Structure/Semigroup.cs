@@ -2,5 +2,5 @@
 
 public interface Semigroup<A>
 {
-     abstract Func<A, A, A> Combine { get; }
+    static abstract Func<A, A, A> Combine { get; }
 }

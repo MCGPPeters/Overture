@@ -2,5 +2,5 @@
 
 public interface Group<A> : Monoid<A>
 {
-    abstract Func<A, A> Invert { get; }
+    static abstract Func<A, A> Invert { get; }
 }

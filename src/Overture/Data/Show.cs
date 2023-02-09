@@ -2,9 +2,11 @@
 
 public interface Show<in T>
 {
-    abstract string Format(T t);
 
-    abstract string Format(T t, string? format, IFormatProvider? provider);
 
-    abstract string Format(T t, Option<string> format, Option<IFormatProvider> provider);
+    static abstract string Format(T t);
+
+    static abstract string Format(T t, string? format, IFormatProvider? provider);
+
+    static abstract Option<string> Format(T t, Option<string> format, Option<IFormatProvider> provider);
 }

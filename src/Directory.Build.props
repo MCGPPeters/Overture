@@ -12,7 +12,7 @@
     <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
     <Deterministic>true</Deterministic>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>preview</LangVersion>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <ProjectUrl>https://github.com/MCGPPeters/overture</ProjectUrl>
@@ -26,6 +26,15 @@
 	  <EnablePreviewFeatures>true</EnablePreviewFeatures>
   </PropertyGroup>
 
+	<ItemGroup>
+		<Compile Include="..\Shared\RequiredMemberAttribute.cs" Link="RequiredMemberAttribute.cs" Visible="false"/>
+	</ItemGroup>
+	
+	<PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+	</PropertyGroup>
+
+
   <ItemGroup>
     <PackageReference Include="MinVer" Version="4.1.0">
       <PrivateAssets>all</PrivateAssets>
@@ -33,16 +42,12 @@
     </PackageReference>
   </ItemGroup>
 
-  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
-    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-  </PropertyGroup>
-
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net6.0'">
     <FrameworkVersion>6.0.0</FrameworkVersion>
   </PropertyGroup>
 
   <PropertyGroup>
-    <NoWarn>1701;1702;1998</NoWarn>
+    <NoWarn>1701;1702;1998;CA2252</NoWarn>
     <WarningsAsErrors>8601;8602;8603;8604;8600;8618;8622;8625;8765</WarningsAsErrors>
   </PropertyGroup>
 

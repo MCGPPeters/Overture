@@ -1,5 +1,4 @@
-﻿using Overture.Data;
-using Overture.Math.Pure.Algebra.Operations;
+﻿using Overture.Math.Pure.Algebra.Operations;
 using Overture.Math.Pure.Algebra.Structure;
 
 namespace Overture.Data.Collections.Generic.Enumerable;
@@ -22,4 +21,41 @@ public static class Extensions
         data[data.Length - 1] = stop;
         return data;
     }
+
+    /// <summary>
+    /// Insertion sort
+    /// </summary>
+    /// <param name="xs"></param>
+    /// <returns></returns>
+    public static T[] Sort<T>(this T[] xs)
+        where T : Order<T>
+    {
+        int n = xs.Length;
+        for (int i = 1; i < n; i++)
+        {
+            for (int j = i; j > 0; j--)
+            {
+                switch (T.Compare(xs[j], xs[j - 1]))
+                {
+                    case LT:
+                        T swap = xs[j];
+                        xs[j] = xs[j - 1];
+                        xs[j - 1] = swap;
+                        break;
+                }
+            }
+        }
+        return xs;
+    }
+
+
+    public static T Aggregate<T>(this IEnumerable<T> xs) where T : Monoid<T> => xs.Aggregate(T.Identity, T.Combine);
+
+    public static T Fold<T>(this IEnumerable<T> xs) where T: Monoid<T> => xs.Aggregate<T>();
+
+    public static T Sum<T>(this IEnumerable<T> values) where T: Monoid<T>, Addition => Aggregate<T>(values);
+    public static T Σ<T>(this IEnumerable<T> values) where T : Monoid<T>, Addition => Sum<T>(values);
+
+    public static T Product<T>(this IEnumerable<T> values) where T : Monoid<T>, Multiplication => Aggregate<T>(values);
+    public static T Π<T>(this IEnumerable<T> values) where T : Monoid<T>, Multiplication => Product<T>(values);
 }

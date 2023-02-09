@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Overture.Data.Collections.Generic;
+﻿namespace Overture.Data.Collections.Generic;
 
 
-public interface List<out T> : IReadOnlyList<T>
+public interface List<T> : IEnumerable<T>, IReadOnlyCollection<T>, IReadOnlyList<T>
     where T : notnull
 {
     public static List<T> Create(IEnumerable<T> values) =>

@@ -39,12 +39,6 @@ public class AliasGenerator : ISourceGenerator
     public void Initialize(GeneratorInitializationContext context)
     {
         context.RegisterForSyntaxNotifications(() => new SyntaxReceiver());
-#if DEBUG
-        if (!Debugger.IsAttached)
-        {
-            Debugger.Launch();
-        }
-#endif
         Debug.WriteLine("Initialize code generator");
     }
 
@@ -75,7 +69,7 @@ public class AliasGenerator : ISourceGenerator
             SyntaxKind.ClassDeclaration => $@"
                 {equalsOperatorsSource}
                 public override bool Equals(object? obj) => obj is {typeSymbol.Name} other && Equals(other);
-                public override int GetHashCode() => {propertyName}?.GetHashCode();
+                public override int GetHashCode() => {propertyName}.GetHashCode();
                 public bool Equals({typeSymbol.Name} other){{ return {propertyName} == other.{propertyName}; }}",
             SyntaxKind.RecordDeclaration => "",
             SyntaxKind.StructDeclaration => $@"
@@ -84,7 +78,7 @@ public class AliasGenerator : ISourceGenerator
                 public override int GetHashCode() => {propertyName}.GetHashCode();
                 public bool Equals({typeSymbol.Name} other)
                 {{
-                    return {propertyName} is null ? false : {propertyName}.Equals(other.{propertyName});
+                    return {propertyName}.Equals(other.{propertyName});
                 }}",
             SyntaxKind.RecordStructDeclaration => "",
             _ => throw new NotSupportedException("Unsupported type kind for generating Alias code")
@@ -95,16 +89,16 @@ namespace {namespaceName}
 {{
     {kindSource}
     {{
-        public {valueType}? {propertyName} {{ get; }}
+        public {valueType} {propertyName} {{ get; }}
         private {typeSymbol.Name}({valueType} value)
         {{
             {propertyName} = value;
         }}
 
-        public override string? ToString() => {propertyName}?.ToString();
+        public override string ToString() => {propertyName}.ToString();
         {equalsSource}
         public static explicit operator {typeSymbol.Name}({valueType} value) => new {typeSymbol.Name}(value);
-        public static implicit operator {valueType}?({typeSymbol.Name} value) => value.{propertyName};
+        public static implicit operator {valueType}({typeSymbol.Name} value) => value.{propertyName};
     }}
 }}");
         return source.ToString();

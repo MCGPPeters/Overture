@@ -23,7 +23,7 @@ namespace Overture.Data.Collections.Generic
         object IEnumerator.Current =>
             GetCurrent();
 
-        public void Dispose() {;}
+        public void Dispose() {; }
 
         public bool MoveNext()
         {
@@ -38,7 +38,7 @@ namespace Overture.Data.Collections.Generic
                         return true;
                     default:
                         return false;
-                
+
                 }
             }
             else
@@ -47,37 +47,8 @@ namespace Overture.Data.Collections.Generic
                 return _list is NonEmptyList<T> && _list is not null;
             }
         }
-    
+
 
         public void Reset() => throw new NotImplementedException();
     }
-
-    //public class NonEmpty<T> : IReadOnlyList<T>, IEnumerable, 
-    //{
-    //    public T this[int index] => throw new NotImplementedException();
-
-    //    public int Count => throw new NotImplementedException();
-
-    //    public IEnumerator<T> GetEnumerator() => throw new NotImplementedException();
-    //    IEnumerator IEnumerable.GetEnumerator() => throw new NotImplementedException();
-    //}
-
-    //public struct NonEmptyEnumerator<T> : IEnumerator<T>
-    //{
-    //    public T Current => throw new NotImplementedException();
-
-    //    object IEnumerator.Current => throw new NotImplementedException();
-
-    //    public void Dispose() => throw new NotImplementedException();
-    //    public bool MoveNext() => throw new NotImplementedException();
-    //    public void Reset() => throw new NotImplementedException();
-    //}
 }
-
-//type List<'T> = 
-//       | ([])  :                  'T list
-//       | (::)  : Head: 'T * Tail: 'T list -> 'T list
-//       interface System.Collections.Generic.IEnumerable < 'T>
-//       interface System.Collections.IEnumerable
-//       interface System.Collections.Generic.IReadOnlyCollection < 'T>
-//       interface System.Collections.Generic.IReadOnlyList < 'T>

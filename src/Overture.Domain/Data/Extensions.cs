@@ -1,0 +1,37 @@
+﻿using Overture.Control.Validated;
+using Overture.Data;
+using System.Diagnostics.Contracts;
+
+namespace Overture.Domain.Data;
+
+public static class Extensions
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="instance"></param>
+    /// <param name="command"></param>
+    /// <typeparam name="TState"></typeparam>
+    /// <typeparam name="TCommand"></typeparam>
+    /// <typeparam name="TAggregateCommand"></typeparam>
+    /// <typeparam name="TEvent"></typeparam>
+    /// <typeparam name="TAggregateEvent"></typeparam>
+    /// <typeparam name="TEventStore"></typeparam>
+    /// <returns></returns>
+    [Pure]
+    public static Task<Validated<Instance<TState, TCommand, TAggregateCommand, TEvent, TAggregateEvent, TEventStore>>>
+        Handle<TState, TCommand, TAggregateCommand, TEvent, TAggregateEvent, TEventStore>(
+            this Instance<TState, TCommand, TAggregateCommand, TEvent, TAggregateEvent, TEventStore> instance,
+            Validated<TAggregateCommand> command)
+        where TEventStore : EventStore<TEventStore>
+        where TState : Aggregate<TState, TAggregateCommand, TAggregateEvent>
+        where TAggregateCommand : TCommand
+        where TAggregateEvent : TEvent
+    {
+        return command
+            .Select(async cmd => (await instance.Context.Handle(instance, cmd)))
+            .Traverse(id => id);
+    }
+            
+
+}

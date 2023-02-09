@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Overture;
 
-namespace Overture;
-
-/// <summary>
-/// 
-/// </summary>
-public static class BackOff
+public static class Backoff
 {
     public static TimeSpan[] Exponentially(int maxNumberOfTimes = 3) => Enumerable
         .Range(1, maxNumberOfTimes)
