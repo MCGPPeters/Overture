@@ -33,7 +33,9 @@
 	<PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
 		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
 	</PropertyGroup>
-
+	<PropertyGroup>
+		<MinVerMinimumMajorMinor>0.1</MinVerMinimumMajorMinor>
+	</PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="MinVer" Version="4.1.0">

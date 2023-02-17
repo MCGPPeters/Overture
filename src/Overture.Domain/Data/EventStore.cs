@@ -3,11 +3,17 @@ using Overture.Math.Pure.Logic.Order.Intervals;
 
 namespace Overture.Domain.Data;
 
-public interface EventStore<TEventStore>
-    where TEventStore : EventStore<TEventStore>
+[Alias<string>]
+public partial record TenantId
 {
-    static abstract Task<Result<ExistingVersion, AppendEventsError>> AppendEvents<TEvent>(string streamName, Version expectedVersion,
+    public static TenantId Default = (TenantId)"";
+}
+
+public interface EventStore<in TEventStore, in TEventStoreSettings>
+    where TEventStore : EventStore<TEventStore, TEventStoreSettings>
+{
+    static abstract Task<Result<ExistingVersion, AppendEventsError>> AppendEvents<TEvent>(TEventStoreSettings eventStoreSettings, TenantId tenantId, Stream stream, Version expectedVersion,
         params TEvent[] events);
 
-    static abstract IAsyncEnumerable<Event<TEvent>> GetEvents<TEvent>(string streamName, Closed<Version> interval);
+    static abstract IAsyncEnumerable<Event<TEvent>> GetEvents<TEvent>(TEventStoreSettings eventStoreSettings, TenantId tenantId, Stream stream, Closed<Version> interval);
 }

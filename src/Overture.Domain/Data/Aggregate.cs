@@ -1,7 +1,4 @@
-﻿using Overture.Data;
-using System.Security.Claims;
-
-namespace Overture.Domain.Data;
+﻿namespace Overture.Domain.Data;
 
 public interface Aggregate<TState, in TCommand, TEvent>
     where TState : Aggregate<TState, TCommand, TEvent>
@@ -27,4 +24,3 @@ public interface Aggregate<TState, in TCommand, TEvent>
     static abstract IAsyncEnumerable<TEvent> ResolveConflicts(TState state, IEnumerable<TEvent> ourEvents, IOrderedAsyncEnumerable<Event<TEvent>> theirEvents);
 
 }
-
